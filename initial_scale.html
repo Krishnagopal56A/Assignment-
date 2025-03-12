@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .slider-container img.active {
+            display: block;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .buttons button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <img id="slide1" class="active" src="C:/Users/KRISHNAGOPAL/Downloads/CSE3.png" alt="Image 1">
+        <img id="slide2" src="C:/Users/KRISHNAGOPAL/Downloads/360_F_362384033_CmB8s3flVvKKbwPjzzOnWMD06JyhkTln.jpg" alt="Image 2">
+        <img id="slide3" src="C:/Users/KRISHNAGOPAL/Downloads/photo-1587831990711-23ca6441447b.jpg" alt="Image 3">
+
+        <div class="buttons">
+            <button onclick="prevImage()">❮ Prev</button>
+            <button onclick="nextImage()">Next ❯</button>
+        </div>
+    </div>
+
+    <script>
+        let images = document.querySelectorAll(".slider-container img");
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach(img => img.classList.remove("active"));
+            images[index].classList.add("active");
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            showImage(currentIndex);
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            showImage(currentIndex);
+        }
+    </script>
+
+</body>
+</html>
